@@ -1,0 +1,19 @@
+<table xmlns:th="http://www.w3.org/1999/xhtml" border="1" cellpadding="5">
+    <thead>
+    <tr>
+        <th> ID </th>
+        <th> Created Date </th>
+        <th> Message </th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr th:if="${notes.empty}">
+        <td colspan="2"> No Notes Available </td>
+    </tr>
+    <tr th:each="note : ${notes}">
+        <td><span th:text="${note.id}"></span></td>
+        <td><span th:text="${note.createdDate}"></span></td>
+        <td><span th:text="${note.message}"></span></td>
+    </tr>
+    </tbody>
+</table>
