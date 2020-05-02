@@ -4,6 +4,7 @@
         <th> ID </th>
         <th> Created Date </th>
         <th> Message </th>
+        <th> Attachments </th>
     </tr>
     </thead>
     <tbody>
@@ -14,6 +15,17 @@
         <td><span th:text="${note.id}"></span></td>
         <td><span th:text="${note.createdDate}"></span></td>
         <td><span th:text="${note.message}"></span></td>
+        <td th:unless="${#lists.isEmpty(note.attachments)}">
+            <p th:each="attachment : ${note.attachments}">
+                Original URL: <span th:text="${attachment.originalUrl}"></span><br>
+                Storage ID: <span th:text="${attachment.storageId}"></span><br>
+                <span th:if="${attachment.class.simpleName == 'PhotoDto'}">
+                    Photo width: <span th:text="${attachment.width}"></span><br>
+                    Photo height: <span th:text="${attachment.height}"></span><br>
+                    <img th:src="${attachment.getStorageUrl()}" th:width="${attachment.getWidth()}" th:height="${attachment.getHeight()}">
+                </span>
+            </p>
+        </td>
     </tr>
     </tbody>
 </table>
